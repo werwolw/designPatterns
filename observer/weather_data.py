@@ -1,5 +1,5 @@
-from observer.observer import Observer
-from observer.subject import Subject
+from observer import Observer
+from subject import Subject
 
 
 class WeatherData(Subject):
@@ -28,3 +28,4 @@ class WeatherData(Subject):
         self.temperature = temp
         self.humidity = humidity
         self.pressure = pressure
+        self.measurements_changed()

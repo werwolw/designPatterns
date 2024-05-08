@@ -1,6 +1,6 @@
-from observer.display_element import DisplayElement
-from observer.observer import Observer
-from observer.subject import Subject
+from display_element import DisplayElement
+from observer import Observer
+from subject import Subject
 
 
 class StatisticsDisplay(Observer, DisplayElement):
@@ -12,6 +12,7 @@ class StatisticsDisplay(Observer, DisplayElement):
 
     def __init__(self, weather_data):
         super().__init__()
+        self.weather_data = weather_data
         weather_data.register_observer(self)
 
     def update(self, temp: float, humidity: float, pressure: float):
