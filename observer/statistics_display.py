@@ -1,6 +1,6 @@
 from display_element import DisplayElement
 from observer import Observer
-from subject import Subject
+from weather_data import WeatherData
 
 
 class StatisticsDisplay(Observer, DisplayElement):
@@ -8,14 +8,15 @@ class StatisticsDisplay(Observer, DisplayElement):
     min_temp: float = 0.0
     temp_sum: float = 0.0
     num_reading: int = 0
-    weather_data: Subject
+    weather_data: WeatherData
 
     def __init__(self, weather_data):
         super().__init__()
         self.weather_data = weather_data
         weather_data.register_observer(self)
 
-    def update(self, temp: float, humidity: float, pressure: float):
+    def update(self):
+        temp = self.weather_data.temperature
         self.temp_sum += temp
         self.num_reading += 1
 

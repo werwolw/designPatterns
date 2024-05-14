@@ -12,8 +12,10 @@ class HeatIndexDisplay(Observer, DisplayElement):
         self.weather_data = weather_data
         weather_data.register_observer(self)
 
-    def update(self, temp: float, humidity: float, pressure: float):
-        self.heat_index = self.compute_heat_index(temp, humidity)
+    def update(self):
+        t = self.weather_data.get_temperature()
+        h = self.weather_data.get_humidity()
+        self.heat_index = self.compute_heat_index(t, h)
         self.display()
 
     def compute_heat_index(self, t: float, rh: float):
